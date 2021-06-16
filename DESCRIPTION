@@ -1,0 +1,26 @@
+Package: QuasiLSE
+Type: Package
+Title: Computes Multivariate Non-parametric Lse With Either Quasiconvex Or Quasiconcave And Additional Monotone Constraint.
+Version: 0.1
+Date: 2021-06-16
+Author: Somabha Mukherjee and Rohit K. Patra
+Maintainer: Rohit K. Patra <rohitpatra@ufl.edu>
+Description: Computes Multivariate Non-parametric Lse With Either Quasiconvex Or Quasiconcave And Additional Monotone Constraint. Also includes tools for 1. checking if a given input satisfies above constraint and 2. interpolating (in a piecewise constant manner) function that satisfies above constraints. 
+License: GPL (>= 2)
+LazyData: TRUE
+URL: https://github.com/somabhamukherjee/QuasiconvexLSE
+BugReports: https://github.com/somabhamukherjee/QuasiconvexLSE/issues
+RoxygenNote: 7.1.1
+Suggests:
+    ggplot2,
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+Imports:
+    mvtnorm,
+    statmod,
+    truncnorm,
+    splines,
+    gurobi,
+    Matrix
