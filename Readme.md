@@ -1,5 +1,5 @@
 # QuasiconvexLSE
-This is an R package to compute the multivariate quasiconvex/quasiconcave nonparametric with or without additional monotonicity constraints LSE as described in "Least Squares Estimation of a Monotone Quasiconvex Regression Function" by Somabha Mukherjee, Rohit K. Patra, Andrew L. Johnson, and Hiroshi Morita, which can be found at the following link:
+This is an R package to compute the multivariate quasiconvex/quasiconcave nonparametric LSE with or without additional monotonicity constraints as described in "Least Squares Estimation of a Monotone Quasiconvex Regression Function" by Somabha Mukherjee, Rohit K. Patra, Andrew L. Johnson, and Hiroshi Morita, which can be found at the following link:
 
 https://arxiv.org/abs/2003.04433
 
