@@ -1,6 +1,6 @@
 Package: QuasiLSE
 Type: Package
-Title: Computes Multivariate Non-parametric Lse With Either Quasiconvex Or Quasiconcave And Additional Monotone Constraint.
+Title: Multivariate Non-parametric LSE With Quasiconvex Or Quasiconcave Constraint 
 Version: 0.1
 Date: 2021-06-16
 Author: Somabha Mukherjee and Rohit K. Patra
@@ -18,9 +18,8 @@ Suggests:
     testthat
 VignetteBuilder: knitr
 Imports:
-    mvtnorm,
-    statmod,
-    truncnorm,
-    splines,
     gurobi,
-    Matrix
+    Matrix,
+    lpSolve,
+    methods,
+    MASS
