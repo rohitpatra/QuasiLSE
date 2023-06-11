@@ -20,7 +20,7 @@ interpol.func(
 \item{nondatapoint}{A d by 1 non-data point where the function needs to be interpolated/extrapolated.}
 
 \item{Shape}{A categorical variable indicating the shape of the function.
-The user must input one of the following three types:
+The user must input one of the following two types:
 "QuasiConvex": means quasiconvex function,
 "none": means no shape restriction is imposed.}
 

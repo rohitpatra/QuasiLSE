@@ -13,7 +13,7 @@
 #' @param cplex.fhat     An n by 1 vector of functional values evaluated at the rows of X.
 #' @param nondatapoint   A d by 1 non-data point where the function needs to be interpolated/extrapolated.
 #' @param Shape          A categorical variable indicating the shape of the function.
-#'                       The user must input one of the following three types:
+#'                       The user must input one of the following two types:
 #'                       "QuasiConvex": means quasiconvex function,
 #'                       "none": means no shape restriction is imposed.
 #' @param Monotone       A categorical variable indicating the monotonicity pattern of the function.
@@ -66,31 +66,30 @@ interpol.func<-function(X,cplex.fhat,nondatapoint, Shape = c("QuasiConvex","none
     #############Now will begin binary search##################
     l<-0
     u<-0
-    if(counter)
-    {
+    if(counter){
       l<-1
       u<-nrow(Y)
     }
-    while(u-l)
-    {
+    while(u-l){
       mid<-floor((l+u)/2)
-      if(mid>1)
-      {
+      if(mid>1){
         counter<-chcheck(Y[1:mid,1:(ncol(Y)-1)],nondatapoint)
       }
-      else
-      {
+      else{
         counter<-chcheck(t(as.matrix(Y[1,1:(ncol(Y)-1)])),nondatapoint)
       }
-      if(counter)
-      {
+      if(counter){
         u<-mid
       }
-      else
-      {
+      else{
         l<-mid+1
       }
-      out<-Y[u,ncol(Y)]
+      if (u == 1){
+        out<-Y[u,ncol(Y)]
+      } else {
+        out <- (Y[u,ncol(Y)] + Y[u-1,ncol(Y)])/2
+      }
+      
     }
     return(out)
   }else if (Shape == "none"){

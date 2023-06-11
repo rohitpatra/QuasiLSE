@@ -385,16 +385,14 @@ chulldowncheck<-function(X,test){
 #' @param X                         An n by d matrix of regressors.
 #' @param fin                An n by 1 vector of fitted values.
 #' @param nondatapoint_matrix       An N by d matrix whose rows may not be among the rows of X.
-#'@param Shape       A categorical variable indicating the type of regression.
-#'                       The user must input one of the following three types:
+#'@param Shape       A categorical variable indicating the type of regression. The user must input one of the following three types:
 #'                       "QuasiConvex": means QuasiConvex regression -- with possible monotonicty constraint enforced by 'Monontone'
 #'                       "QuasiConcave": means QuasiConcave regression -- with possible monotonicty constraint enforced by 'Monontone'
-#'                      "none": means there is neither
-#' @param Monotone                  A categorical variable denoting the type of regression in terms of monotonicity, in addition to possible shape constraint imposed by the 'Shape' parameter
-#'                                  The user must input one of the following three types:
+#'                        "none": means there is neither
+#' @param Monotone                  A categorical variable denoting the type of regression in terms of monotonicity, in addition to possible shape constraint imposed by the 'Shape' parameter. The user must input one of the following three types:
 #'                                  "non.inc": means nonincreasing
 #'                                  "non.dec": means nondecreasing
-#'                                  "non": means quasiconvex regression.
+#'                                  "none": means quasiconvex regression.
 #'
 #' @return                          A vector, representing a quasiconvex and monotone (type of monotonicity
 #'                                  determined by the user entered option for the input variable Monotone)
@@ -411,35 +409,27 @@ chulldowncheck<-function(X,test){
 # # ' Xnondata = matrix(runif(20*3, 0, 2), nrow=20)
 # # ' out=interpolation.matrix.func(X,ret$f.hat,Xnondata,Monotone="non.inc")
 
-interpolation.matrix.func<-function(X,fin,nondatapoint_matrix,Shape = c("QuasiConvex", "QuasiConcave", "none"), Monotone = c("non.inc", "non.dec","none"))
-{
-  if(Shape=="QuasiConvex")
-  {
-  int.f<-function(ndp)
-  {
+interpolation.matrix.func<-function(X,fin,nondatapoint_matrix,Shape = c("QuasiConvex", "QuasiConcave", "none"), Monotone = c("non.inc", "non.dec","none")){
+  if(Shape=="QuasiConvex"){
+    int.f<-function(ndp){
     return(interpol.func(X,fin,ndp,Shape="QuasiConvex", Monotone))
   }
-  return(apply(nondatapoint_matrix,1,int.f))
+    return(apply(nondatapoint_matrix,1,int.f))
   }
-  else if(Shape=="QuasiConcave")
-  {
+  else if(Shape=="QuasiConcave"){
     Mon<-"none"
-    if(Monotone=="non.inc")
-    {
+    if(Monotone=="non.inc"){
       Mon<-"non.dec"
     }
-    else if (Monotone=="non.dec")
-    {
+    else if (Monotone=="non.dec"){
       Mon<-"non.inc"
     }
-    int.f<-function(ndp)
-    {
+    int.f<-function(ndp){
       return(-interpol.func(X,-fin,ndp, Shape= "QuasiConvex", Mon))
     }
     return(apply(nondatapoint_matrix,1,int.f))
   } else if (Shape == "none"){
-     int.f<-function(ndp)
-    {
+     int.f<-function(ndp){
       return(interpol.func(X,fin,ndp, Shape= "none", Monotone))
     }
     return(apply(nondatapoint_matrix,1,int.f))
